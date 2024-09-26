@@ -15,14 +15,15 @@ import random
 from datetime import date
 
 
-quotes = [
-    # Create a list of quotes here
-]
+quotes = [12,24,33,25,48,60,190]
 
 def get_quote_of_the_day(quotes):
-    todays_quote = None
+    today = date.today()
+    random.seed(int(today.strftime("%Y%m%d%H%M%S")))
+    todays_quote = random.choice(quotes)
 
     # Your code here
+
     
     return todays_quote
 
