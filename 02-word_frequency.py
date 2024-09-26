@@ -18,12 +18,20 @@ Hints:
 """
 
 import sys
+import re
 
 def word_frequency(text):
+    text = re.sub('[\W_0]+', ' ', text) # Remove all non alphabets
     frequencies = {} # Dictionary to store word frequencies
-
+    text = text.lower()
+    words = text.split()
     # Your code here
-    
+    for word in words:
+        if word in frequencies:
+            frequencies[word] += 1
+        else:
+            frequencies[word] = 1
+
     return frequencies
 
 # Scaffold for opening a file and running word_frequency() on the contents
@@ -31,12 +39,12 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python word_frequency.py <input_file>")
         sys.exit(1)
-    
+
     filename = sys.argv[1]
     try:
         with open(filename, 'r') as file:
             text = file.read() # Read the entire file into a string
-        
+
         frequencies = word_frequency(text)
         
         # Print results
