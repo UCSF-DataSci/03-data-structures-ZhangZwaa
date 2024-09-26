@@ -14,7 +14,6 @@ Hints:
 - (Optional) Convert characters to integers using int()
 """
 
-
 THOUSAND_DIGIT_NUMBER = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -40,9 +39,14 @@ THOUSAND_DIGIT_NUMBER = """
 
 def find_greatest_product(number_string, adjacent_digits=13):
     max_product = 0
-    
+    for i in range(len(number_string) - adjacent_digits + 1):
+        window = number_string[i:i+adjacent_digits]
+        products = 1
+        for num in window:
+            products *= int(num)
     # Your code here
-
+        if products > max_product:
+            max_product = products
     return max_product
 
 if __name__ == "__main__":
